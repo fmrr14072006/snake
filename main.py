@@ -1,8 +1,21 @@
-# Import libraries and modules
+    # Import libraries and modules
 import pygame
 from pygame.locals import *
 import constants
 import time
+
+
+class Apple():
+    def __init__(self, parent_window):
+        self.image = pygame.image.load("apple.png").convert()
+        self.parent_window = parent_window
+        self.x = 120
+        self.y = 120
+
+    def draw(self):
+        self.parent_window.blit(self.image, (self.x, self.y))   
+        pygame.display.flip()
+            
 
 class Snake():
     def __init__(self, parent_window, length):
@@ -42,16 +55,16 @@ class Snake():
 
         # uptade head
         if self.direction == "left":
-            self.x[0] -= constants.SIZE_SNAKE
+                self.x[0] -= constants.SIZE_SNAKE
 
-        if self.direction == "right":
-            self.x[0] += constants.SIZE_SNAKE
+        if self.direction == "rigth":
+                self.x[0] += constants.SIZE_SNAKE
 
         if self.direction == "up":
-            self.y[0] -= constants.SIZE_SNAKE
-        
+                self.y[0] -= constants.SIZE_SNAKE
+            
         if self.direction == "down":
-            self.y[0] += constants.SIZE_SNAKE
+                self.y[0] += constants.SIZE_SNAKE
 
         self.draw()
 
@@ -68,36 +81,42 @@ class Game():
         self.snake = Snake(self.window, 5)
         self.snake.draw()
 
+        self.apple = Apple(self.window)
+        self.apple.draw()
+
         pygame.display.update()
 
     def run(self):
-            running = True
-            while running:
-                for event in pygame.event.get():
-                    if event.type == KEYDOWN: 
+        running = True
+        while running:
+            for event in pygame.event.get():
+                if event.type == KEYDOWN: 
 
-                        if event.key == K_ESCAPE:
-                            running = False
-
-                        if event.key == K_LEFT:
-                            self.snake.move_left()
-                        
-                        if event.key == K_RIGHT:
-                            self.snake.move_rigth()
-
-                        if event.key == K_UP:
-                            self.snake.move_up()
-
-                        if event.key == K_DOWN:
-                            self.snake.move_down()
-
-
-
-                    elif event.type == QUIT:
+                    if event.key == K_ESCAPE:
                         running = False
 
-                self.snake.walk()
-                time.sleep(.2)
+                    if event.key == K_LEFT:
+                        self.snake.move_left()
+                        
+                    if event.key == K_RIGHT:
+                        self.snake.move_rigth()
+
+                    if event.key == K_UP:
+                        self.snake.move_up()
+
+                    if event.key == K_DOWN:
+                        self.snake.move_down()
+
+
+
+                elif event.type == QUIT:
+                    running = False
+
+            self.snake.walk()
+
+            self.apple.draw()
+            
+            time.sleep(.2)
 
 
 
