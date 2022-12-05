@@ -1,6 +1,6 @@
 # Size Windows
-SCREEN_WIDTH = 1200
-SCREEN_HEIGHT = 800
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
 SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
 # Title
@@ -8,3 +8,6 @@ TITLE = "SNAKE"
 
 # Colors
 BG_COLOR = (236, 112, 99)
+
+# Size snake body
+SIZE_SNAKE = 24
